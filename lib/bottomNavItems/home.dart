@@ -16,9 +16,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var _dotPosition = 0;
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
-  List<String> _carouselImageList = [];
+  final List<String> _carouselImageList = [];
 
   // Fetch Carousel Images
   _fetchCarouselImage() async {
@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
             readOnly: true,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => SearchingItem()));
+                  MaterialPageRoute(builder: (_) => const SearchingItem()));
             },
             decoration: InputDecoration(
               hintText: "Search your items...",
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
               filled: true,
               contentPadding:
                   EdgeInsets.symmetric(vertical: 15.h, horizontal: 20.w),
-              prefixIcon: Icon(Icons.search, color: Colors.grey),
+              prefixIcon: const Icon(Icons.search, color: Colors.grey),
             ),
           ),
         ),
@@ -120,9 +120,9 @@ class _HomeState extends State<Home> {
           position: _dotPosition.toInt(),
           decorator: DotsDecorator(
             activeColor: Colors.orange,
-            spacing: EdgeInsets.all(2),
-            activeSize: Size(8, 8),
-            size: Size(6, 6),
+            spacing: const EdgeInsets.all(2),
+            activeSize: const Size(8, 8),
+            size: const Size(6, 6),
             color: Colors.orange.withOpacity(0.5),
           ),
         ),
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
   }
 
  Widget _buildProductGrid() {
-  return Container(
+  return SizedBox(
     height: MediaQuery.of(context).size.height * 0.6,
     child: StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection("products").snapshots(),
@@ -202,7 +202,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5), // Space below the image
+                    const SizedBox(height: 5), // Space below the image
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: Column(
@@ -214,7 +214,7 @@ class _HomeState extends State<Home> {
                                 fontSize: 14, fontWeight: FontWeight.w600),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
                             "\$${data["price"] ?? "0"}",
                             style: const TextStyle(

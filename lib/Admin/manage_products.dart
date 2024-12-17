@@ -31,6 +31,7 @@ class ManageProducts extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Price: \$${data["price"]}"),
+                    Text("Stock: ${data["quantity_in_stock"]}"),
                     Text("Description: ${data["product_description"] ?? "No description"}"),
                   ],
                 ),
@@ -68,6 +69,8 @@ class ManageProducts extends StatelessWidget {
         TextEditingController(text: productData?["product_image"] ?? "");
     final TextEditingController descriptionController =
         TextEditingController(text: productData?["product_description"] ?? "");
+    final TextEditingController quantityController =
+        TextEditingController(text: productData?["quantity_in_stock"]?.toString() ?? "");
 
     showDialog(
       context: context,
@@ -96,6 +99,11 @@ class ManageProducts extends StatelessWidget {
                   decoration: const InputDecoration(labelText: "Product Description"),
                   maxLines: 3,
                 ),
+                TextField(
+                  controller: quantityController,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(labelText: "Quantity in Stock"),
+                ),
               ],
             ),
           ),
@@ -110,8 +118,9 @@ class ManageProducts extends StatelessWidget {
                 final String priceText = priceController.text.trim();
                 final String imageUrl = imageController.text.trim();
                 final String description = descriptionController.text.trim();
+                final String quantityText = quantityController.text.trim();
 
-                if (name.isEmpty || priceText.isEmpty || imageUrl.isEmpty || description.isEmpty) {
+                if (name.isEmpty || priceText.isEmpty || imageUrl.isEmpty || description.isEmpty || quantityText.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("All fields are required")),
                   );
@@ -119,9 +128,10 @@ class ManageProducts extends StatelessWidget {
                 }
 
                 final double? price = double.tryParse(priceText);
-                if (price == null) {
+                final int? quantity = int.tryParse(quantityText);
+                if (price == null || quantity == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Invalid price value")),
+                    const SnackBar(content: Text("Invalid price or quantity value")),
                   );
                   return;
                 }
@@ -131,6 +141,7 @@ class ManageProducts extends StatelessWidget {
                   "price": price,
                   "product_image": imageUrl,
                   "product_description": description,
+                  "quantity_in_stock": quantity,
                 };
 
                 if (productId == null) {

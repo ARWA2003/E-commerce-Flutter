@@ -169,7 +169,7 @@ class _SearchingItemState extends State<SearchingItem> {
                               trailing: Text(
                                 "\$${price.toStringAsFixed(2)}",
                                 style: const TextStyle(
-                                    fontSize: 14, color: Colors.green),
+                                    fontSize: 14, color: Color.fromARGB(255, 76, 173, 175)),
                               ),
                             ),
                           ),

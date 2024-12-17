@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
     final currentUser = FirebaseAuth.instance.currentUser;
 
     if (currentUser == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: Text('No user is currently logged in.')),
       );
     }
@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor:Color.fromARGB(255, 214, 184, 225),
         title: Center(
           child: Text(
             'Profile',
@@ -44,7 +44,7 @@ class _ProfileState extends State<Profile> {
         stream: userDocRef.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
@@ -52,7 +52,7 @@ class _ProfileState extends State<Profile> {
           }
 
           if (!snapshot.hasData || !snapshot.data!.exists) {
-            return Center(child: Text('User data not found.'));
+            return const Center(child: Text('User data not found.'));
           }
 
           final userData = snapshot.data!;
@@ -67,7 +67,7 @@ class _ProfileState extends State<Profile> {
                     Container(
                       width: double.infinity,
                       height: 180.h,
-                      color: Colors.green[700],
+                      color:Color.fromARGB(255, 214, 184, 225),
                     ),
                     Positioned(
                       top: 100.h,
@@ -156,7 +156,7 @@ class _ProfileState extends State<Profile> {
                           Navigator.of(context).pop();
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green[700],
+                          backgroundColor: Color.fromARGB(255, 214, 184, 225),
                           padding: EdgeInsets.symmetric(
                               horizontal: 50.w, vertical: 12.h),
                           shape: RoundedRectangleBorder(
@@ -191,7 +191,7 @@ class ProfileDetailRow extends StatelessWidget {
   final String value;
 
   const ProfileDetailRow(
-      {required this.icon, required this.label, required this.value});
+      {super.key, required this.icon, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

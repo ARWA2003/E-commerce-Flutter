@@ -14,21 +14,21 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  final _items = [Home(), Cart(), Favor(), Profile()];
+  final _items = [const Home(), const Cart(), const Favor(), const Profile()];
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: Text(
+        backgroundColor: const Color.fromARGB(255, 215, 156, 213),
+        title: const Text(
           "SnapShop",
           style: TextStyle(
               fontSize: 35, fontWeight: FontWeight.w500, color: Colors.black87),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: const Color.fromARGB(255, 214, 184, 225),
         selectedItemColor: Colors.indigo,
         elevation: 0,
         currentIndex: _selectedIndex,
@@ -39,21 +39,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
         },
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               label: "Home",
-              backgroundColor: Colors.green[700]),
+              backgroundColor: Color.fromARGB(255, 214, 184, 225),),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               label: "Cart",
-              backgroundColor: Colors.green[700]),
+              backgroundColor:Color.fromARGB(255, 214, 184, 225),),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
+              icon: const Icon(Icons.favorite_outline),
               label: "Favor",
-              backgroundColor: Colors.green[700]),
+              backgroundColor: Color.fromARGB(255, 214, 184, 225),),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
               label: "Person",
-              backgroundColor: Colors.green[700]),
+              backgroundColor:Color.fromARGB(255, 214, 184, 225),),
         ],
       ),
       body: _items[_selectedIndex],

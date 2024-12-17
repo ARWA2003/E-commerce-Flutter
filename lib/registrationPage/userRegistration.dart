@@ -45,7 +45,7 @@ class _UserRegistrationState extends State<UserRegistration> {
 
       // Show success message
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Registration successful')));
+          .showSnackBar(const SnackBar(content: Text('Registration successful')));
     } catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Error: $e')));
@@ -60,7 +60,7 @@ class _UserRegistrationState extends State<UserRegistration> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color.fromARGB(255, 214, 184, 225),
         title: Text(
           'Register Account',
           style: TextStyle(
@@ -83,7 +83,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green[700],
+                  color: Color.fromARGB(255, 214, 184, 225),
                 ),
               ),
               SizedBox(height: 20.h),
@@ -121,14 +121,14 @@ class _UserRegistrationState extends State<UserRegistration> {
               ),
               SizedBox(height: 30.h),
               _isLoading
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : SizedBox(
                 width: double.infinity,
                 height: 50.h,
                 child: ElevatedButton(
                   onPressed: registerUser,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[700],
+                    backgroundColor: Color.fromARGB(255, 214, 184, 225),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -152,7 +152,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                 child: Text(
                   'Already have an account? Log in',
                   style: TextStyle(
-                    color: Colors.green[700],
+                    color:Color.fromARGB(255, 214, 184, 225),
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                   ),
@@ -179,14 +179,14 @@ class _UserRegistrationState extends State<UserRegistration> {
       keyboardType: keyboardType,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon, color: Colors.green[700]),
+        prefixIcon: Icon(icon, color:Color.fromARGB(255, 214, 184, 225),),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green),
+          borderSide: const BorderSide(color:Color.fromARGB(255, 214, 184, 225)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green[700]!, width: 2),
+          borderSide: BorderSide(color:Color.fromARGB(255, 214, 184, 225)!, width: 2),
         ),
       ),
       style: TextStyle(fontSize: 16.sp),

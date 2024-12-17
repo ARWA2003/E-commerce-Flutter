@@ -35,7 +35,7 @@ class _CartState extends State<Cart> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
+        backgroundColor: Color.fromARGB(255, 214, 184, 225),
         elevation: 0,
         title: Text(
           'Cart',
@@ -52,7 +52,7 @@ class _CartState extends State<Cart> {
         builder: (context, snapshot) {
           // Handle loading state
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           // Handle errors
@@ -183,7 +183,7 @@ class _CartState extends State<Cart> {
               // Total and Checkout Section
               Container(
                 padding: EdgeInsets.all(15.w),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -208,7 +208,7 @@ class _CartState extends State<Cart> {
                         // Add checkout logic here
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green[700],
+                        backgroundColor:Color.fromARGB(255, 214, 184, 225),
                       ),
                       child: Text(
                         'Checkout',
@@ -237,7 +237,7 @@ class _CartState extends State<Cart> {
         'quantity': FieldValue.increment(1),
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Quantity increased')),
+        const SnackBar(content: Text('Quantity increased')),
       );
     } else {
       if (currentQuantity > 1) {
@@ -245,12 +245,12 @@ class _CartState extends State<Cart> {
           'quantity': FieldValue.increment(-1),
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Quantity decreased')),
+          const SnackBar(content: Text('Quantity decreased')),
         );
       } else {
         await cartItemRef.delete();
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Item removed from cart')),
+          const SnackBar(content: Text('Item removed from cart')),
         );
       }
     }
