@@ -13,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   bool _rememberMe = false; // Remember Me toggle state
 
   @override
@@ -58,8 +58,8 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
+                const Padding(
+                  padding: EdgeInsets.only(left: 20.0),
                   child: Text(
                     "Sign in",
                     style: TextStyle(
@@ -68,11 +68,11 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.white),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   height: MediaQuery.of(context).size.height - 200,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.green[700]),
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0),
                         child: Text(
@@ -102,28 +102,28 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.green[700]),
                         ),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                         child: Column(
                           children: [
                             TextField(
                               controller: _email,
                               keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.email),
                                   hintText: "Enter your email"),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             TextField(
                               controller: _password,
                               obscureText: true, // Hide password
                               keyboardType: TextInputType.visiblePassword,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   prefixIcon: Icon(Icons.password),
                                   hintText: "Enter your password"),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                       activeColor: Colors.green[700],
                                     ),
-                                    Text("Remember Me")
+                                    const Text("Remember Me")
                                   ],
                                 ),
                                 TextButton(
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       Center(
                         child: Container(
                           width: 150,
@@ -170,7 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                                 // Navigate to AdminPanel
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                      builder: (_) => AdminPanel()),
+                                      builder: (_) => const AdminPanel()),
                                 );
                               } else {
                                 User? user = await _login(
@@ -179,13 +179,13 @@ class _LoginPageState extends State<LoginPage> {
                                   await _saveCredentials();
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                      builder: (_) => BottomNavigation(),
+                                      builder: (_) => const BottomNavigation(),
                                     ),
                                   );
                                 }
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               "Login",
                               style: TextStyle(
                                   fontSize: 30,
@@ -195,17 +195,17 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Don't have an account?"),
+                          const Text("Don't have an account?"),
                           TextButton(
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => UserRegistration()));
+                                      builder: (_) => const UserRegistration()));
                             },
                             child: Text(
                               "Register here...",
@@ -244,14 +244,14 @@ class _LoginPageState extends State<LoginPage> {
   void _resetPassword() async {
     if (_email.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please enter your email to reset password")),
+        const SnackBar(content: Text("Please enter your email to reset password")),
       );
       return;
     }
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: _email.text);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Password reset email sent")),
+        const SnackBar(content: Text("Password reset email sent")),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

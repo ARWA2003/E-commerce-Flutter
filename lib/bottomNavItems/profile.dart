@@ -17,7 +17,7 @@ class _ProfileState extends State<Profile> {
     final currentUser = FirebaseAuth.instance.currentUser;
 
     if (currentUser == null) {
-      return Scaffold(
+      return const Scaffold(
         body: Center(child: Text('No user is currently logged in.')),
       );
     }
@@ -44,7 +44,7 @@ class _ProfileState extends State<Profile> {
         stream: userDocRef.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
@@ -52,7 +52,7 @@ class _ProfileState extends State<Profile> {
           }
 
           if (!snapshot.hasData || !snapshot.data!.exists) {
-            return Center(child: Text('User data not found.'));
+            return const Center(child: Text('User data not found.'));
           }
 
           final userData = snapshot.data!;
@@ -191,7 +191,7 @@ class ProfileDetailRow extends StatelessWidget {
   final String value;
 
   const ProfileDetailRow(
-      {required this.icon, required this.label, required this.value});
+      {super.key, required this.icon, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

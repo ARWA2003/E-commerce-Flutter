@@ -39,11 +39,11 @@ class _FavorState extends State<Favor> {
             : null,
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasError) {
-            return Center(child: Text('Error fetching favorites'));
+            return const Center(child: Text('Error fetching favorites'));
           }
 
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
@@ -104,7 +104,7 @@ class _FavorState extends State<Favor> {
                       ),
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete, color: Colors.red),
+                      icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () {
                         removeFromFavorites(product.id);
                       },
@@ -137,7 +137,7 @@ class _FavorState extends State<Favor> {
       await favoriteRef.delete();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Item removed from favorites')),
+        const SnackBar(content: Text('Item removed from favorites')),
       );
 
       // Update the UI

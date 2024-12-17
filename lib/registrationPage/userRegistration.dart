@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart'; // Import for date formatting
+// Import for date formatting
 
 class UserRegistration extends StatefulWidget {
   const UserRegistration({super.key});

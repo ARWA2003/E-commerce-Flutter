@@ -8,7 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductDetails extends StatefulWidget {
   final Map<String, dynamic> products;
 
-  ProductDetails(this.products);
+  const ProductDetails(this.products, {super.key});
 
   @override
   State<ProductDetails> createState() => _ProductDetailsState();
@@ -47,7 +47,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     if (currentUser == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please log in to add items to favorites')),
+        const SnackBar(content: Text('Please log in to add items to favorites')),
       );
       return;
     }
@@ -61,7 +61,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     if (isFavorite) {
       await favoriteRef.delete();
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Item removed from favorites')),
+        const SnackBar(content: Text('Item removed from favorites')),
       );
     } else {
       await favoriteRef.set({
@@ -71,7 +71,7 @@ class _ProductDetailsState extends State<ProductDetails> {
         'addedAt': DateTime.now(),
       });
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Item added to favorites')),
+        const SnackBar(content: Text('Item added to favorites')),
       );
     }
 
@@ -85,7 +85,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     if (currentUser == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please log in to add items to the cart')),
+        const SnackBar(content: Text('Please log in to add items to the cart')),
       );
       return;
     }
@@ -129,11 +129,11 @@ class _ProductDetailsState extends State<ProductDetails> {
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Item added to cart')),
+          const SnackBar(content: Text('Item added to cart')),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Product is out of stock')),
+          const SnackBar(content: Text('Product is out of stock')),
         );
       }
     }
@@ -144,14 +144,14 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     if (currentUser == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please log in to submit a review')),
+        const SnackBar(content: Text('Please log in to submit a review')),
       );
       return;
     }
 
     if (commentController.text.trim().isEmpty || userRating == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please add a comment and rating')),
+        const SnackBar(content: Text('Please add a comment and rating')),
       );
       return;
     }
@@ -177,7 +177,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Review submitted')),
+      const SnackBar(content: Text('Review submitted')),
     );
   }
 
@@ -198,7 +198,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
         ),
         actions: [
           IconButton(
@@ -244,12 +244,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   children: [
                     TextField(
                       controller: commentController,
-                      decoration: InputDecoration(labelText: 'Write a review'),
+                      decoration: const InputDecoration(labelText: 'Write a review'),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     DropdownButton<double>(
                       value: userRating, // Nullable value
-                      hint: Text('Select Rating'),
+                      hint: const Text('Select Rating'),
                       items: [1, 2, 3, 4, 5]
                           .map((e) => DropdownMenuItem<double>(
                                 value: e.toDouble(),
@@ -262,7 +262,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     ),
                     ElevatedButton(
                       onPressed: _submitComment,
-                      child: Text('Submit Review'),
+                      child: const Text('Submit Review'),
                     ),
                   ],
                 ),
@@ -273,7 +273,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addItemToCart,
-        child: Icon(Icons.shopping_cart),
+        child: const Icon(Icons.shopping_cart),
       ),
     );
   }

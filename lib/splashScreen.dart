@@ -17,12 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Schedule the navigation after a delay
-    Timer(Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 2), () {
       // Check if the widget is still mounted before navigating
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => LoginPage()),
+          MaterialPageRoute(builder: (_) => const LoginPage()),
         );
       }
     });
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 20.h,
             ),
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
 
               color: Colors.white,
             )
